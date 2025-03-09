@@ -22,10 +22,59 @@ const taskGridd = Ext.create('Ext.grid.Panel', {
     }]
 });
 
-const viewPort = Ext.create('Ext.container.Viewport', {
-    layout: 'hbox', // Use vbox layout to stack items vertically
-    scrollable: true, // Enable scrolling
+// Create a menu
+const menu = Ext.create('Ext.toolbar.Toolbar', {
+    layout: "hbox",
     items: [
+        {
+            text: 'Item 1',
+            handler: function () {
+                console.log('Item 1 clicked');
+            }
+        },
+        {
+            text: 'Item 2',
+            handler: function () {
+                console.log('Item 2 clicked');
+            }
+        },
+        {
+            text: 'Item 3',
+            handler: function () {
+                console.log('Item 3 clicked');
+            }
+        },
+        '-', // Separator
+        {
+            text: 'Submenu',
+            menu: {
+                items: [
+                    {
+                        text: 'Subitem 1',
+                        handler: function () {
+                            console.log('Subitem 1 clicked');
+                        }
+                    },
+                    {
+                        text: 'Subitem 2',
+                        handler: function () {
+                            console.log('Subitem 2 clicked');
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+});
+
+const viewPort = Ext.create('Ext.container.Viewport', {
+    layout: 'auto', // Use vbox layout to stack items vertically
+    autoScroll: true, // Enable scrolling
+    scrollable: 'y', // Enable vertical scrolling
+    Style: "overflow: scroll",
+    items: [
+        menu,
+        // buttonGroup,
         taskGridd,
         {
             xtype: 'button',
@@ -35,6 +84,11 @@ const viewPort = Ext.create('Ext.container.Viewport', {
             }
         },
         // Add more content to exceed the viewport's dimensions
+        {
+            xtype: 'panel',
+            height: 500,
+            html: 'Additional content to enable scrolling'
+        },
         {
             xtype: 'panel',
             height: 500,
