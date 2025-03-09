@@ -1,4 +1,6 @@
 import { taskStore } from './taskstore.js';
+import { testGrid } from './testgrid.js';
+
 // Create the grid
 const taskGridd = Ext.create('Ext.grid.Panel', {
     title: 'Tasks',
@@ -22,9 +24,38 @@ const taskGridd = Ext.create('Ext.grid.Panel', {
     }]
 });
 
+// Create a segmented button
+const segmentedButton = Ext.create('Ext.button.Segmented', {
+    items: [
+        {
+            text: 'Button 1',
+            handler: function () {
+                console.log('Button 1 clicked');
+            }
+        },
+        {
+            text: 'Button 2',
+            handler: function () {
+                console.log('Button 2 clicked');
+            }
+        },
+        {
+            text: 'Button 3',
+            handler: function () {
+                console.log('Button 3 clicked');
+            }
+        },
+        {
+            text: 'Button 4',
+            handler: function () {
+                console.log('Button 4 clicked');
+            }
+        }
+    ]
+});
+
 // Create a menu
 const menu = Ext.create('Ext.toolbar.Toolbar', {
-    layout: "hbox",
     items: [
         {
             text: 'Item 1',
@@ -68,13 +99,11 @@ const menu = Ext.create('Ext.toolbar.Toolbar', {
 });
 
 const viewPort = Ext.create('Ext.container.Viewport', {
-    layout: 'auto', // Use vbox layout to stack items vertically
-    autoScroll: true, // Enable scrolling
-    scrollable: 'y', // Enable vertical scrolling
-    Style: "overflow: scroll",
+    layout: 'vbox', // Use vbox layout to stack items vertically
+    scrollable: true, // Enable scrolling
     items: [
         menu,
-        // buttonGroup,
+        testGrid,
         taskGridd,
         {
             xtype: 'button',
@@ -83,6 +112,7 @@ const viewPort = Ext.create('Ext.container.Viewport', {
                 console.log('hello');
             }
         },
+        segmentedButton,
         // Add more content to exceed the viewport's dimensions
         {
             xtype: 'panel',
@@ -97,7 +127,7 @@ const viewPort = Ext.create('Ext.container.Viewport', {
     ]
 });
 
-export { 
-    taskGridd, 
+export {
+    taskGridd,
     viewPort
 };

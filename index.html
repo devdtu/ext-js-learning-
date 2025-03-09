@@ -6,11 +6,18 @@
     <link rel="stylesheet" href="https://cdn.sencha.com/ext/commercial/7.6.0/build/classic/theme-triton/resources/theme-triton-all.css">
     <script src="https://cdn.sencha.com/ext/commercial/7.6.0/build/ext-all.js"></script>
     <script src="https://cdn.sencha.com/ext/commercial/7.6.0/build/classic/theme-triton/theme-triton.js"></script>
-    <script type="module" src="./app.js"></script>
     <script type="module" src="./homepage.js"></script>
+    <script type="module" src="./taskstore.js"></script>
+    <script type="module" src="./testgrid.js"></script>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
         .x-viewport {
-            overflow: auto !important;
+            height: 100%;
+            overflow-y: auto !important;
         }
     </style>
 </head>
