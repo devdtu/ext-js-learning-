@@ -1,5 +1,6 @@
 import { taskStore } from './taskstore.js';
 import { testGrid } from './testgrid.js';
+import { customComp } from './custom/MyCustomComponent.js'; // Import the custom component
 
 // Create the grid
 const taskGridd = Ext.create('Ext.grid.Panel', {
@@ -98,36 +99,43 @@ const menu = Ext.create('Ext.toolbar.Toolbar', {
     ]
 });
 
-const viewPort = Ext.create('Ext.container.Viewport', {
-    layout: 'vbox', // Use vbox layout to stack items vertically
-    scrollable: true, // Enable scrolling
-    items: [
-        menu,
-        testGrid,
-        taskGridd,
-        {
-            xtype: 'button',
-            text: "hello",
-            handler: function () {
-                console.log('hello');
+Ext.onReady(function () { 
+
+    console.log("line 105 called ")
+    const viewPort = Ext.create('Ext.container.Viewport', {
+        layout: 'vbox', // Use vbox layout to stack items vertically
+        scrollable: true, // Enable scrolling
+        items: [
+            menu,
+            testGrid,
+            taskGridd,
+            {
+                xtype: 'button',
+                text: "hello",
+                handler: function () {
+                    console.log('hello');
+                }
+            },
+            segmentedButton,
+            // Add more content to exceed the viewport's dimensions
+            {
+                xtype: 'panel',
+                height: 500,
+                html: 'Additional content to enable scrolling',
+                items: [{xtype: "mycustomcomponent",
+                    customProperty: "Custom value"
+                }]
+            },
+            {
+                xtype: 'panel',
+                height: 500,
+                html: 'Additional content to enable scrolling'
             }
-        },
-        segmentedButton,
-        // Add more content to exceed the viewport's dimensions
-        {
-            xtype: 'panel',
-            height: 500,
-            html: 'Additional content to enable scrolling'
-        },
-        {
-            xtype: 'panel',
-            height: 500,
-            html: 'Additional content to enable scrolling'
-        }
-    ]
-});
+        ]
+    });
+    
+})
 
 export {
-    taskGridd,
-    viewPort
+    taskGridd
 };
